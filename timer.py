@@ -3,9 +3,11 @@ import tkinter as tk
 window = tk.Tk()
 window.title("Timer")
 
+# Create frame to hold widgets
 frame = tk.Frame(master=window, width=350, height=150)
 frame.pack()
 
+# Create and place labels and entry boxes
 label = tk.Label(master=frame, text="Set timer:")
 hourLabel = tk.Label(master=frame, text = "Hours")
 hourEntry = tk.Entry(master=frame, width = 4)
@@ -27,5 +29,8 @@ minLabel.place(x=100, y=35)
 secEntry.place(x=240, y=35)
 secLabel.place(x=190, y=35)
 
+#Create button to start and stop timer
+pauseButton = tk.Button(master=frame, text="Start/Pause", width = 10)
+pauseButton.place(x=120, y=80)
 
 window.mainloop()
