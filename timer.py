@@ -3,7 +3,8 @@ import tkinter as tk
 window = tk.Tk()
 window.title("Timer")
 
-def startStop():
+running = False
+timeLeft = 0
 
 def updateTimer():
 
@@ -19,7 +20,7 @@ frame.pack()
 
 # Create and place labels and entry boxes
 
-time = tk.Label(master=frame, text="00:00:00", font=('arial', 50))
+time = tk.Label(master=frame, text="0", font=('arial', 50))
 time.place(x=40, y=110)
 label = tk.Label(master=frame, text="Set timer:")
 hourLabel = tk.Label(master=frame, text = "Hours")
@@ -42,10 +43,27 @@ minLabel.place(x=100, y=35)
 secEntry.place(x=240, y=35)
 secLabel.place(x=190, y=35)
 
-#Create button to start and stop timer
-pauseButton = tk.Button(master=frame, text="Start/Pause", width = 10, command=startStop)
-pauseButton.place(x=120, y=80)
+def startStop():
+    global running
+    global timeLeft
+    # Check if timer is running
+    if not running:
+        hours = int(hourEntry.get())
+        minutes = int(minEntry.get())
+        seconds = int(secEntry.get())
+        # Cauculate toal seconds left
+        totalSeconds = hours * 3600 + minutes * 60 + seconds
+        timeLeft = totalSeconds
+        
+        running = True
+        updateTime()
+    else:
+        running = False
 
+#Create button to start and stop timer
+pauseButton = tk.Button(master=frame, text="Start/Pause", width = 10)
+pauseButton.place(x=120, y=80)
+pauseButton.config(command=startStop)
 
 
 def handle_click(event):
