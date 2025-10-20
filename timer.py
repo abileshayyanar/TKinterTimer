@@ -9,7 +9,7 @@ timeLeft = 0  # seconds
 
 
 def format_time(t: int) -> str:
-    """Format seconds as HH:MM:SS."""
+    # Formats time as HH:MM:SS
     if t < 0:
         t = 0
     h = t // 3600
@@ -27,7 +27,6 @@ def safe_int(s: str) -> int:
 
 
 def resetTimer():
-    """Stop the timer and reset to 00:00:00."""
     global running, timeLeft
     running = False
     timeLeft = 0
@@ -39,7 +38,6 @@ frame = tk.Frame(master=window, width=450, height=220)
 frame.pack()
 
 # Create and place labels and entry boxes
-
 time_label = tk.Label(master=frame, text=format_time(0), font=("arial", 75))
 time_label.place(x=40, y=110)
 label = tk.Label(master=frame, text="Set timer:")
