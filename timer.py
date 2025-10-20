@@ -1,15 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
 
-import sv_ttk
 
 window = tk.Tk()
-sv_ttk.set_theme("light")
 window.title("Timer")
 
-# State
 running = False
-timeLeft = 0  # seconds
+timeLeft = 0
 
 
 def formatTime(t: int) -> str:
@@ -38,30 +35,30 @@ def resetTimer():
 
 
 # Create frame to hold widgets
-frame = ttk.Frame(master=window, width=440, height=220)
+frame = tk.Frame(master=window, width=440, height=220)
 frame.pack()
 
 # Create and place labels and entry
-time_label = ttk.Label(master=frame, text=formatTime(0), font=("helvetica", 75, "bold"))
+time_label = tk.Label(master=frame, text=formatTime(0), font=("helvetica", 75, "bold"))
 time_label.place(x=20, y=110)
-hourLabel = ttk.Label(master=frame, text="Hours:")
-hourEntry = ttk.Entry(master=frame, width=4)
+hourLabel = tk.Label(master=frame, text="Hours:")
+hourEntry = tk.Entry(master=frame, width=4)
 
-minLabel = ttk.Label(master=frame, text="Minutes:")
-minEntry = ttk.Entry(master=frame, width=4)
+minLabel = tk.Label(master=frame, text="Minutes:")
+minEntry = tk.Entry(master=frame, width=4)
 
-secLabel = ttk.Label(master=frame, text="Seconds:")
-secEntry = ttk.Entry(master=frame, width=4)
+secLabel = tk.Label(master=frame, text="Seconds:")
+secEntry = tk.Entry(master=frame, width=4)
 
 
 hourEntry.place(x=63, y=15)
-hourLabel.place(x=20, y=20)
+hourLabel.place(x=20, y=15)
 
 minEntry.place(x=180, y=15)
-minLabel.place(x=125, y=20)
+minLabel.place(x=125, y=15)
 
 secEntry.place(x=295, y=15)
-secLabel.place(x=240, y=20)
+secLabel.place(x=240, y=15)
 
 
 def startStop():
@@ -97,11 +94,11 @@ def updateTime():
 
 
 # Create buttons
-pauseButton = ttk.Button(master=frame, text="Start/Pause", width=10)
+pauseButton = tk.Button(master=frame, text="Start/Pause", width=10)
 pauseButton.place(x=100, y=70)
 pauseButton.config(command=startStop)
 
-resetButton = ttk.Button(master=frame, text="Reset", width=10)
+resetButton = tk.Button(master=frame, text="Reset", width=10)
 resetButton.place(x=250, y=70)
 resetButton.config(command=resetTimer)
 
