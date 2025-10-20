@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from time import strftime
 
 
 window = tk.Tk()
@@ -7,6 +8,8 @@ window.title("Timer")
 
 running = False
 timeLeft = 0
+
+# ADD CLOCK FUNCTIOALITY!!!
 
 
 def formatTime(t: int) -> str:
@@ -31,17 +34,17 @@ def resetTimer():
     global running, timeLeft
     running = False
     timeLeft = 0
-    time_label.config(text=formatTime(timeLeft))
+    timerLabel.config(text=formatTime(timeLeft))
 
 
 # Create frame to hold widgets
 frame = tk.Frame(master=window, width=440, height=220)
-frame.configure(bg="white")
+frame.configure(bg="lightgrey")
 frame.pack()
 
 # Create and place labels and entry
-time_label = tk.Label(master=frame, text=formatTime(0), font=("helvetica", 75, "bold"))
-time_label.place(x=20, y=110)
+timerLabel = tk.Label(master=frame, text=formatTime(0), font=("helvetica", 75, "bold"))
+timerLabel.place(x=20, y=110)
 hourLabel = tk.Label(master=frame, text="Hours:")
 hourEntry = tk.Entry(master=frame, width=4)
 
@@ -61,6 +64,9 @@ minLabel.place(x=125, y=15)
 secEntry.place(x=295, y=15)
 secLabel.place(x=240, y=15)
 
+dropDown = ttk.Combobox(master=frame, width=10, textvariable="mode")
+dropDown['values'] = (' Timer ', ' Clock ')
+dropDown.place(x=320, y=70)
 
 def startStop():
     global running, timeLeft
@@ -73,7 +79,7 @@ def startStop():
             totalSeconds = hours * 3600 + minutes * 60 + seconds
             timeLeft = totalSeconds
             # update display immediately
-            time_label.config(text=formatTime(timeLeft))
+            timerLabel.config(text=formatTime(timeLeft))
 
         # Only start if there is time to count down
         if timeLeft > 0:
@@ -96,7 +102,7 @@ def updateTime():
     global timeLeft, running
     if running and timeLeft > 0:
         timeLeft -= 1
-        time_label.config(text=formatTime(timeLeft))
+        timerLabel.config(text=formatTime(timeLeft))
         window.after(1000, updateTime)
         if timeLeft == 0:
             running = False
