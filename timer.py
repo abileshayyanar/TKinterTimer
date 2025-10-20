@@ -4,7 +4,7 @@ from tkinter import ttk
 import sv_ttk
 
 window = tk.Tk()
-sv_ttk.set_theme("dark")
+sv_ttk.set_theme("light")
 window.title("Timer")
 
 # State
@@ -38,32 +38,30 @@ def resetTimer():
 
 
 # Create frame to hold widgets
-frame = ttk.Frame(master=window, width=460, height=220)
+frame = ttk.Frame(master=window, width=440, height=220)
 frame.pack()
 
-# Create and place labels and entry boxes
-time_label = ttk.Label(master=frame, text=formatTime(0), font=("arial", 75))
-time_label.place(x=40, y=110)
-label = ttk.Label(master=frame, text="Set timer:")
-hourLabel = ttk.Label(master=frame, text="Hours", font=(bold))
+# Create and place labels and entry
+time_label = ttk.Label(master=frame, text=formatTime(0), font=("helvetica", 75, "bold"))
+time_label.place(x=20, y=110)
+hourLabel = ttk.Label(master=frame, text="Hours:")
 hourEntry = ttk.Entry(master=frame, width=4)
 
-minLabel = ttk.Label(master=frame, text="Minutes")
+minLabel = ttk.Label(master=frame, text="Minutes:")
 minEntry = ttk.Entry(master=frame, width=4)
 
-secLabel = ttk.Label(master=frame, text="Seconds")
+secLabel = ttk.Label(master=frame, text="Seconds:")
 secEntry = ttk.Entry(master=frame, width=4)
 
-label.place(x=15, y=4)
 
-hourEntry.place(x=65, y=35)
-hourLabel.place(x=20, y=40)
+hourEntry.place(x=63, y=15)
+hourLabel.place(x=20, y=20)
 
-minEntry.place(x=180, y=35)
-minLabel.place(x=125, y=40)
+minEntry.place(x=180, y=15)
+minLabel.place(x=125, y=20)
 
-secEntry.place(x=300, y=35)
-secLabel.place(x=245, y=40)
+secEntry.place(x=295, y=15)
+secLabel.place(x=240, y=20)
 
 
 def startStop():
@@ -100,11 +98,11 @@ def updateTime():
 
 # Create buttons
 pauseButton = ttk.Button(master=frame, text="Start/Pause", width=10)
-pauseButton.place(x=100, y=80)
+pauseButton.place(x=100, y=70)
 pauseButton.config(command=startStop)
 
 resetButton = ttk.Button(master=frame, text="Reset", width=10)
-resetButton.place(x=250, y=80)
+resetButton.place(x=250, y=70)
 resetButton.config(command=resetTimer)
 
 updateTime()
