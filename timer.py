@@ -36,6 +36,7 @@ def resetTimer():
 
 # Create frame to hold widgets
 frame = tk.Frame(master=window, width=440, height=220)
+frame.configure(bg="white")
 frame.pack()
 
 # Create and place labels and entry
@@ -82,7 +83,15 @@ def startStop():
         # pause
         running = False
 
+def flashScreen(count = 0):
+    if count < 10:
+        newColor = "red" if count % 2 == 0 else "white"
+        frame.configure(bg=newColor)
+        frame.after(500, flashScreen, count + 1)
+    else:
+        frame.configure(bg="white")
 
+    
 def updateTime():
     global timeLeft, running
     if running and timeLeft > 0:
@@ -91,6 +100,7 @@ def updateTime():
         window.after(1000, updateTime)
         if timeLeft == 0:
             running = False
+            flashScreen()
 
 
 # Create buttons
