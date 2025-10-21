@@ -43,7 +43,7 @@ frame.configure(bg="lightgrey")
 frame.pack()
 
 # Create and place labels and entry
-timerLabel = tk.Label(master=frame, text=formatTime(0), font=("helvetica", 75, "bold"))
+timerLabel = tk.Label(master=frame, text=formatTime(0), font=("helvetica", 75, "bold"), bg="lightgrey")
 timerLabel.place(x=20, y=110)
 hourLabel = tk.Label(master=frame, text="Hours:")
 hourEntry = tk.Entry(master=frame, width=4)
@@ -64,9 +64,9 @@ minLabel.place(x=125, y=15)
 secEntry.place(x=295, y=15)
 secLabel.place(x=240, y=15)
 
-dropDown = ttk.Combobox(master=frame, width=10, textvariable="mode")
-dropDown['values'] = (' Timer ', ' Clock ')
-dropDown.place(x=320, y=70)
+# dropDown = ttk.Combobox(master=frame, width=10, textvariable="mode")
+# dropDown['values'] = (' Timer ', ' Clock ')
+# dropDown.place(x=330, y=15)
 
 def startStop():
     global running, timeLeft
@@ -93,9 +93,11 @@ def flashScreen(count = 0):
     if count < 10:
         newColor = "red" if count % 2 == 0 else "white"
         frame.configure(bg=newColor)
+        timerLabel.configure(bg=newColor)
         frame.after(500, flashScreen, count + 1)
     else:
-        frame.configure(bg="white")
+        frame.configure(bg="lightgrey")
+        timerLabel.configure(bg="lightgrey")
 
     
 def updateTime():
