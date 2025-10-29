@@ -39,11 +39,11 @@ def resetTimer():
 
 # Create frame to hold widgets
 frame = tk.Frame(master=window, width=440, height=220)
-frame.configure(bg="lightgrey")
+frame.configure(bg="seashell2")
 frame.pack()
 
 # Create and place labels and entry
-timerLabel = tk.Label(master=frame, text=formatTime(0), font=("helvetica", 75, "bold"), bg="lightgrey")
+timerLabel = tk.Label(master=frame, text=formatTime(0), font=("helvetica", 75, "bold"), bg="seashell2")
 timerLabel.place(x=20, y=110)
 hourLabel = tk.Label(master=frame, text="Hours:")
 hourEntry = tk.Entry(master=frame, width=4)
@@ -96,8 +96,8 @@ def flashScreen(count = 0):
         timerLabel.configure(bg=newColor)
         frame.after(500, flashScreen, count + 1)
     else:
-        frame.configure(bg="lightgrey")
-        timerLabel.configure(bg="lightgrey")
+        frame.configure(bg="seashell2")
+        timerLabel.configure(bg="seashell2")
 
     
 def updateTime():
