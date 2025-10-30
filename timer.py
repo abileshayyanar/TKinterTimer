@@ -10,7 +10,43 @@ running = False
 timeLeft = 0
 
 # ADD CLOCK FUNCTIOALITY!!!
+def clock():
+    currentTime = strftime("%H:%M:%S")
+    clockLabel.config(text=currentTime)
+    clockLabel.after(1000, clock)
 
+clockLabel = tk.Label(master=window, font=("helvetica", 75), bg='seashell2')
+
+def switchMode(event=None):
+    mode = modeVar.get()
+    if mode == "Clock":
+        hourEntry.place_forget()
+        hourLabel.place_forget()
+        minEntry.place_forget()
+        minLabel.place_forget()
+        secEntry.place_forget()
+        secLabel.place_forget()
+        pauseButton.place_forget()
+        resetButton.place_forget()
+        timerLabel.place_forget()
+
+        clockLabel.place(x=20, y=110)
+        clock()
+    else:
+        clockLabel.place_forget()
+
+        hourEntry.place(x=63, y=15)
+        hourLabel.place(x=20, y=15)
+
+        minEntry.place(x=180, y=15)
+        minLabel.place(x=125, y=15)
+
+        secEntry.place(x=295, y=15)
+        secLabel.place(x=240, y=15)
+
+        pauseButton.place(x=100, y=70)
+        resetButton.place(x=250, y=70)
+        timerLabel.place(x=20, y=110)
 
 def formatTime(t: int) -> str:
     # Formats time as HH:MM:SS
@@ -64,9 +100,11 @@ minLabel.place(x=125, y=15)
 secEntry.place(x=295, y=15)
 secLabel.place(x=240, y=15)
 
-# dropDown = ttk.Combobox(master=frame, width=10, textvariable="mode")
-# dropDown['values'] = (' Timer ', ' Clock ')
-# dropDown.place(x=330, y=15)
+modeVar = tk.StringVar(value="Timer")
+dropDown = ttk.Combobox(master=frame, width=10, textvariable=modeVar)
+dropDown['values'] = ('Timer', 'Clock')
+dropDown.place(x=330, y=15)
+dropDown.bind("<<ComboboxSelected>>", switchMode)
 
 def startStop():
     global running, timeLeft
@@ -121,5 +159,6 @@ resetButton.place(x=250, y=70)
 resetButton.config(command=resetTimer)
 
 updateTime()
+switchMode()
 
 window.mainloop()
