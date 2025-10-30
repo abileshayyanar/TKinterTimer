@@ -17,10 +17,13 @@ timeLeft = 0
 # Clock functionality
 def clock():
     currentTime = strftime("%H:%M:%S")
+    amPm = strftime("%p")
     clockLabel.config(text=currentTime)
+    amPmLabel.config(text=amPm)
     clockLabel.after(1000, clock)
 
-clockLabel = tk.Label(master=frame, font=("helvetica", 80, "bold"), bg='seashell2')
+amPmLabel = tk.Label(master=frame, font=("helvetica", 30, "bold"), bg='seashell2')
+clockLabel = tk.Label(master=frame, font=("helvetica", 70, "bold"), bg='seashell2')
 
 def switchMode(event=None):
     mode = modeVar.get()
@@ -36,9 +39,11 @@ def switchMode(event=None):
         timerLabel.place_forget()
 
         clockLabel.place(x=1, y=40)
+        amPmLabel.place(x=375, y=55)
         clock()
     else:
         clockLabel.place_forget()
+        amPmLabel.place_forget()
 
         hourEntry.place(x=63, y=15)
         hourLabel.place(x=20, y=15)
