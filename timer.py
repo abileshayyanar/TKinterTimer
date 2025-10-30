@@ -6,16 +6,21 @@ from time import strftime
 window = tk.Tk()
 window.title("Timer")
 
+# Create frame to hold widgets
+frame = tk.Frame(master=window, width=440, height=180)
+frame.configure(bg="seashell2")
+frame.pack()
+
 running = False
 timeLeft = 0
 
-# ADD CLOCK FUNCTIOALITY!!!
+# Clock functionality
 def clock():
     currentTime = strftime("%H:%M:%S")
     clockLabel.config(text=currentTime)
     clockLabel.after(1000, clock)
 
-clockLabel = tk.Label(master=window, font=("helvetica", 75), bg='seashell2')
+clockLabel = tk.Label(master=frame, font=("helvetica", 80, "bold"), bg='seashell2')
 
 def switchMode(event=None):
     mode = modeVar.get()
@@ -30,7 +35,7 @@ def switchMode(event=None):
         resetButton.place_forget()
         timerLabel.place_forget()
 
-        clockLabel.place(x=20, y=110)
+        clockLabel.place(x=1, y=40)
         clock()
     else:
         clockLabel.place_forget()
@@ -44,9 +49,9 @@ def switchMode(event=None):
         secEntry.place(x=295, y=15)
         secLabel.place(x=240, y=15)
 
-        pauseButton.place(x=100, y=70)
-        resetButton.place(x=250, y=70)
-        timerLabel.place(x=20, y=110)
+        pauseButton.place(x=100, y=50)
+        resetButton.place(x=250, y=50)
+        timerLabel.place(x=20, y=70)
 
 def formatTime(t: int) -> str:
     # Formats time as HH:MM:SS
@@ -73,11 +78,6 @@ def resetTimer():
     timerLabel.config(text=formatTime(timeLeft))
 
 
-# Create frame to hold widgets
-frame = tk.Frame(master=window, width=440, height=220)
-frame.configure(bg="seashell2")
-frame.pack()
-
 # Create and place labels and entry
 timerLabel = tk.Label(master=frame, text=formatTime(0), font=("helvetica", 75, "bold"), bg="seashell2")
 timerLabel.place(x=20, y=110)
@@ -91,14 +91,14 @@ secLabel = tk.Label(master=frame, text="Seconds:")
 secEntry = tk.Entry(master=frame, width=4)
 
 
-hourEntry.place(x=63, y=15)
-hourLabel.place(x=20, y=15)
+# hourEntry.place(x=63, y=15)
+# hourLabel.place(x=20, y=15)
 
-minEntry.place(x=180, y=15)
-minLabel.place(x=125, y=15)
+# minEntry.place(x=180, y=15)
+# minLabel.place(x=125, y=15)
 
-secEntry.place(x=295, y=15)
-secLabel.place(x=240, y=15)
+# secEntry.place(x=295, y=15)
+# secLabel.place(x=240, y=15)
 
 modeVar = tk.StringVar(value="Timer")
 dropDown = ttk.Combobox(master=frame, width=10, textvariable=modeVar)
@@ -151,11 +151,9 @@ def updateTime():
 
 # Create buttons
 pauseButton = tk.Button(master=frame, text="Start/Pause", width=10)
-pauseButton.place(x=100, y=70)
 pauseButton.config(command=startStop)
 
 resetButton = tk.Button(master=frame, text="Reset", width=10)
-resetButton.place(x=250, y=70)
 resetButton.config(command=resetTimer)
 
 updateTime()
